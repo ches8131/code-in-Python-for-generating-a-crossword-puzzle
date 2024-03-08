@@ -1,0 +1,25 @@
+class Crossword:
+    def __init__(self, size):
+        self.size = size
+        self.grid = [[' ' for _ in range(size)] for _ in range(size)]
+
+    def add_word(self, word, direction, row, col):
+        word_length = len(word)
+        if direction == 'across':
+            for i in range(word_length):
+                self.grid[row][col + i] = word[i]
+        elif direction == 'down':
+            for i in range(word_length):
+                self.grid[row + i][col] = word[i]
+
+    def display(self):
+        for row in self.grid:
+            print(' '.join(row))
+
+
+# Example usage:
+crossword = Crossword(7)
+crossword.add_word('PYTHON', 'across', 1, 1)
+crossword.add_word('JAVA', 'down', 3, 3)
+
+crossword.display()
